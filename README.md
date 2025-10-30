@@ -63,7 +63,7 @@ How to Run the Project
 
 Clone the repository
 
-git clone https://github.com/your-username/Bank-Management-System.git
+git clone https://github.com/sidhant1306/Bank-Management-System.git
 cd Bank-Management-System
 
 
