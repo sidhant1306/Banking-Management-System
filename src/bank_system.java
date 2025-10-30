@@ -276,7 +276,7 @@ public class bank_system {
             String insert_transaction = "INSERT INTO transactions(debit_account, credit_account, amount, status, category) VALUES(?, ? ,?, ?, ?)";
             String withdraw_money = "UPDATE accounts SET balance = balance - ? WHERE user_id = ?";
 
-            if (isSufficient(connection, sc, amount, user_id)) {
+            if (isSufficient(connection, amount, user_id)) {
                 PreparedStatement withdraw_prep = connection.prepareStatement(withdraw_money);
                 withdraw_prep.setDouble(1, amount);
                 withdraw_prep.setInt(2, user_id);
@@ -326,7 +326,7 @@ public class bank_system {
     }
     // does the user have sufficient money in the account :
 
-    public static boolean isSufficient(Connection connection, Scanner sc, double amount, int user_id) {
+    public static boolean isSufficient(Connection connection, double amount, int user_id) {
         double curr_balance = check_balance(connection, user_id);   // using the check_balance function to get the value of current balance
         return curr_balance >= amount;
     }
@@ -354,7 +354,7 @@ public class bank_system {
             PreparedStatement credit_prep = connection.prepareStatement(credit_query);
 
 
-            if (isSufficient(connection, sc, amount, debit_user_id)) {
+            if (isSufficient(connection, amount, debit_user_id)) {
                 debit_prep.setDouble(1, amount);
                 debit_prep.setInt(2, debit_user_id);
                 credit_prep.setDouble(1, amount);
